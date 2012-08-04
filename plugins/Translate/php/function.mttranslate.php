@@ -54,6 +54,7 @@ function smarty_function_mttranslate ( $args, &$ctx ) {
         $str = $l10n_str;
     }
     if ( $params ) {
+        $params = str_getcsv( $params, ':' );
         if (! is_array( $params ) ) {
             $params = array( $params );
         }

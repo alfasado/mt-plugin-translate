@@ -40,13 +40,13 @@ function smarty_function_mttranslate ( $args, &$ctx ) {
         return $language;
     }
     $Lexicon_lang = 'Lexicon_' . $lang;
-    if ( $lang === $language ) {
-        global $$Lexicon_lang;
-    } else {
-        require_once( $plugin_path . DIRECTORY_SEPARATOR . 'l10n' . DIRECTORY_SEPARATOR . 'l10n_' . $language . '.php' );
-        $Lexicon_lang = 'Lexicon_' . $language;
-        global $$Lexicon_lang;
-    }
+    // if ( $lang === $language ) {
+    //     global $$Lexicon_lang;
+    // } else {
+         require_once( $plugin_path . DIRECTORY_SEPARATOR . 'l10n' . DIRECTORY_SEPARATOR . 'l10n_' . $language . '.php' );
+         $Lexicon_lang = 'Lexicon_' . $language;
+         global $$Lexicon_lang;
+    //}
     $l10n_str = isset( ${$Lexicon_lang}[ $str ] ) ? ${$Lexicon_lang}[ $str ] : ( isset( $Lexicon[ $str ] ) ? $Lexicon[ $str ] : $str );
     if ( extension_loaded( 'mbstring' ) ) {
         $str = mb_convert_encoding( $l10n_str, mb_internal_encoding(), "UTF-8" );
